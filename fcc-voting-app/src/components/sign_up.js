@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
+import axios from 'axios';
 
 export default class SignUp extends Component {
   constructor() {
@@ -20,9 +22,17 @@ export default class SignUp extends Component {
   handlePasswordConfirmChange = (evt) => {
     this.setState({ passwordConfirm: evt.target.value });
   }
-  handleSubmit = () => {
+  handleSubmit = (evt) => {
+    evt.preventDefault();
     const { email, password } = this.state;
-    alert(`Signed up with email: ${email} password: ${password}`);
+    axios.post('http://localhost:3000/signup', { email, password })
+      .then(response => {
+        console.log(response);
+        window.location = "http://localhost:3001/polls"
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
