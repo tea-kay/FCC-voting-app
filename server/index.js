@@ -1,43 +1,28 @@
+// Application Starting Point
+require('dotenv').config();
 const express = require('express');
-const jwt = require('jsonwebtoken');
+const http = require('http');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+
 const app = express();
+const router = require('./router');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-app.get('/api', function(req, res) {
-  res.json({
-    text: 'my api'
-  });
+// DB Setup
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tim-voting', {
+  useMongoClient: true
 });
 
-app.post('/api/login', function(req, res) {
-  const user = { id: 3 };
-  const token = jwt.sign({ user }, 'secret_key');
-  res.json({
-    token: token
-  });
-});
+// App Setup
+app.use(logger('combined'));
+app.use(cors());
+app.use(bodyParser.json({ type: '*/*' }));
+router(app);
 
-app.get('/api/protected', ensureToken, function(req, res) {
-  jwt.verify(req.token, 'secret_key', (err, data) => {
-    if (err) { res.sendStatus(403) };
-    res.json({
-      text: 'this is protected',
-      data
-    });
-  })
-});
-
-function ensureToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  if(typeof bearerHeader !== 'undefined') {
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
-    next();
-  } else {
-    res.sendStatus(403);
-  }
-}
-
-app.listen(3000, function() {
-  console.log('App is listening on port 8080');
-})
+// Server Setup
+const port = process.env.PORT || 3000;
+const server = http.createServer(app);
+server.listen(port);
+console.log('Server spinning on port', port);
