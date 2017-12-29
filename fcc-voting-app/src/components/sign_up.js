@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
 import axios from 'axios';
 
@@ -15,7 +14,6 @@ export default class SignUp extends Component {
   handleEmailChange = (evt) => {
     this.setState({ email: evt.target.value });
   }
-
   handlePasswordChange = (evt) => {
     this.setState({ password: evt.target.value });
   }
@@ -46,7 +44,7 @@ export default class SignUp extends Component {
             type="email"
             label="Email"
             placeholder="Enter Email"
-            value={this.state.email}
+            value={this.setState.email}
             onChange={this.handleEmailChange}
           />
           <FieldGroup
@@ -54,7 +52,7 @@ export default class SignUp extends Component {
             label="Password"
             type="password"
             placeholder="Enter password"
-            value={this.state.password}
+            value={this.setState.password}
             onChange={this.handlePasswordChange}
             required
           />
@@ -63,7 +61,7 @@ export default class SignUp extends Component {
             label=" Confirm Password"
             type="password"
             placeholder="Enter password"
-            value={this.state.passwordConfirm}
+            value={this.setState.passwordConfirm}
             onChange={this.handlePasswordConfirmChange}
             required
           />

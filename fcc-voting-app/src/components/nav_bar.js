@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { BrowserRouter, Route } from 'react-router-dom';
 
 export default class NavBar extends Component {
   render() {
@@ -9,7 +8,7 @@ export default class NavBar extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">FCC Voting App</a>
+            <a href="">FCC Voting App</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>

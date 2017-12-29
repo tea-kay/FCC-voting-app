@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Button, Row, Col } from 'react-bootstrap';
 
 export default class LandingPage extends Component {
   render() {
