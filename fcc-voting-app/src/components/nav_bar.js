@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 export default class NavBar extends Component {
   render() {
+    const { isAuthenticated } = this.props
     return (
       <div>
       <Navbar>
@@ -16,11 +17,19 @@ export default class NavBar extends Component {
           <NavItem eventKey={2} href="polls">Polls</NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={3} href="login">Login</NavItem>
+          {!isAuthenticated &&
+            <NavItem eventKey={3} href="login">Login</NavItem>
+          }
+          {isAuthenticated &&
+            <NavItem eventKey={5} href="logout">Logout</NavItem>
+          }
           <NavItem eventKey={4} href="signup">Sign Up</NavItem>
         </Nav>
       </Navbar>
     </div>
     )
   }
+}
+
+Navbar.propTypes = {
 }

@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import FieldGroup from './field_group';
 import axios from 'axios';
+import setAuthorizationToken from './utils/setAuthorizationToken';
 
 export default class SignUp extends Component {
   constructor() {
-  super();
-  this.state = {
-    email: '',
-    password: '',
-  };
+    super();
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
   handleEmailChange = (evt) => {
     this.setState({ email: evt.target.value });
@@ -26,6 +27,8 @@ export default class SignUp extends Component {
     axios.post('http://localhost:3000/signup', { email, password })
       .then(response => {
         console.log(response);
+        const user = response.data.user;
+        localStorage.setItem('user', user.email);
         window.location = "http://localhost:3001/polls"
       })
       .catch(error => {
