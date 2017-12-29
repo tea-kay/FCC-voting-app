@@ -1,14 +1,22 @@
 import { SET_CURRENT_USER } from '../actions/types';
 
-export default (state = {
-  isAuthenticated: localStorage.getItem('user') ? true : false
-}, action = {}) => {
+const DEFAULT_STATE = {
+  isAuthenticated: false,
+  user: null,
+  msg: null,
+  token: null
+};
+
+export default (state = DEFAULT_STATE, action) => {
   switch(action.type) {
     case SET_CURRENT_USER:
       return {
-        isAuthenticated !isEmpty(action.user),
-        user: action.user
-      }
-    default: return state;
+        isAuthenticated: true,
+        user: action.user,
+        msg: action.msg,
+        token: action.token
+      };
+    default:
+      return state;
   }
 }

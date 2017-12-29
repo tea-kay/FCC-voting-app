@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+
+import { actionCreators } from '../actions/authActions';
+
 import FieldGroup from './field_group';
 import axios from 'axios';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,16 +27,7 @@ export default class Login extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     const { email, password } = this.state;
-    axios.post('http://localhost:3000/signin', { email, password })
-      .then(response => {
-        console.log(response);
-        const user = response.data.user;
-        localStorage.setItem('user', user.email);
-        window.location = "http://localhost:3001/polls"
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    this.props.actions.setCurrentUser({ email, password });
   }
   render() {
     const { email, password } = this.state;
@@ -69,3 +65,13 @@ export default class Login extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

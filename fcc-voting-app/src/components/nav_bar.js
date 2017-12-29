@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 export default class NavBar extends Component {
   render() {
