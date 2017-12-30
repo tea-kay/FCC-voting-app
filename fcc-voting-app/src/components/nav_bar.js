@@ -1,10 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default class NavBar extends Component {
+import { actionCreators } from '../actions/authActions';
+
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    localStorage.clear();
+    window.location = 'http://localhost:3001';
+  }
+
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated } = this.props.auth
     return (
       <div>
       <Navbar>
@@ -14,17 +28,19 @@ export default class NavBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="/">Home</NavItem>
+          <Link to='/'><NavItem eventKey={1}>Home</NavItem></Link>
           <NavItem eventKey={2} href="polls">Polls</NavItem>
         </Nav>
         <Nav pullRight>
           {!isAuthenticated &&
-            <NavItem eventKey={3} href="login">Login</NavItem>
+            [
+              <NavItem key='login' eventKey={3} href="login">Login</NavItem>,
+              <NavItem key='signup' eventKey={4} href="signup">Sign Up</NavItem>
+            ]
           }
           {isAuthenticated &&
-            <NavItem eventKey={5} href="logout">Logout</NavItem>
+            <NavItem eventKey={3} onClick={this.handleLogout}>Logout</NavItem>
           }
-          <NavItem eventKey={4} href="signup">Sign Up</NavItem>
         </Nav>
       </Navbar>
     </div>
@@ -32,5 +48,12 @@ export default class NavBar extends Component {
   }
 }
 
-Navbar.propTypes = {
+const mapStateToProps = ({ auth }) => {
+  return { auth }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
