@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import FieldGroup from './field_group';
 import axios from 'axios';
-import setAuthorizationToken from './utils/setAuthorizationToken';
 
 export default class SignUp extends Component {
   constructor() {

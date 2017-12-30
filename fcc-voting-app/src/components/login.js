@@ -7,7 +7,6 @@ import { actionCreators } from '../actions/authActions';
 
 import FieldGroup from './field_group';
 import axios from 'axios';
-import setAuthorizationToken from './utils/setAuthorizationToken';
 
 
 class Login extends Component {
