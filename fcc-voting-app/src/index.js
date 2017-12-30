@@ -14,12 +14,11 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-// Hydrate auth reducer
-// dispatch(), getState()
 if (localStorage.getItem('token')) {
   store.dispatch({
     type: SET_CURRENT_USER,
-    user: localStorage.getItem('user'),
+    user: JSON.parse(localStorage.getItem('user')),
+    token: localStorage.getItem('token'),
     msg: 'Welcome back!'
   });
 }

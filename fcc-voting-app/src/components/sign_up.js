@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
 import axios from 'axios';
 
 export default class SignUp extends Component {
   constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-    };
+  super();
+  this.state = {
+    email: '',
+    password: '',
+  };
   }
   handleEmailChange = (evt) => {
     this.setState({ email: evt.target.value });
   }
+
   handlePasswordChange = (evt) => {
     this.setState({ password: evt.target.value });
   }
@@ -26,9 +28,7 @@ export default class SignUp extends Component {
     axios.post('http://localhost:3000/signup', { email, password })
       .then(response => {
         console.log(response);
-        const user = response.data.user;
-        localStorage.setItem('user', user.email);
-        window.location = "http://localhost:3001/polls"
+        // window.location = "http://localhost:3001/polls"
       })
       .catch(error => {
         console.error(error);
@@ -46,7 +46,7 @@ export default class SignUp extends Component {
             type="email"
             label="Email"
             placeholder="Enter Email"
-            value={this.setState.email}
+            value={this.state.email}
             onChange={this.handleEmailChange}
           />
           <FieldGroup
@@ -54,7 +54,7 @@ export default class SignUp extends Component {
             label="Password"
             type="password"
             placeholder="Enter password"
-            value={this.setState.password}
+            value={this.state.password}
             onChange={this.handlePasswordChange}
             required
           />
@@ -63,7 +63,7 @@ export default class SignUp extends Component {
             label=" Confirm Password"
             type="password"
             placeholder="Enter password"
-            value={this.setState.passwordConfirm}
+            value={this.state.passwordConfirm}
             onChange={this.handlePasswordConfirmChange}
             required
           />

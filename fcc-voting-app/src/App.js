@@ -13,12 +13,12 @@ class App extends Component {
       <div>
         <NavBar/>
         <BrowserRouter>
-            <Switch>
-              <Route path="/" exact component={LandingPage} />
-              <Route path="/polls" component={PollsPage} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/login" component={Login} />
-            </Switch>
+          <Switch>
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/polls" component={PollsPage} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/login" component={Login} />
+          </Switch>
         </BrowserRouter>
       </div>
     );
