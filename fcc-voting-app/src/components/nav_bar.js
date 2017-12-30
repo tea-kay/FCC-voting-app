@@ -28,7 +28,7 @@ class NavBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <Link to='/'><NavItem eventKey={1}>Home</NavItem></Link>
+          <NavItem eventKey={1} onClick={() => this.props.history.replace({ pathname: '/' })}>Home</NavItem>
           <NavItem eventKey={2} href="polls">Polls</NavItem>
         </Nav>
         <Nav pullRight>
