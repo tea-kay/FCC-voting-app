@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
 import axios from 'axios';
-import NavBar from './nav_bar';
 
 import NavBar from './nav_bar';
 
@@ -43,11 +42,7 @@ export default class SignUp extends Component {
     const isEnabled = (email.length > 0 && password.length > 0) && (password === passwordConfirm);
     return (
       <div>
-<<<<<<< HEAD
-        <NavBar />
-=======
         <NavBar history={this.props.history}/>
->>>>>>> c9c54940680e92de55b3b908d0c68e95ba83ae0d
         <div className="container">
           <form onSubmit={this.handleSubmit}>
             <FieldGroup
