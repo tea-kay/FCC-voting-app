@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
 import axios from 'axios';
 
+import NavBar from './nav_bar';
+
 export default class SignUp extends Component {
   constructor() {
   super();
@@ -39,42 +41,45 @@ export default class SignUp extends Component {
     const { email, password, passwordConfirm } = this.state;
     const isEnabled = (email.length > 0 && password.length > 0) && (password === passwordConfirm);
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <FieldGroup
-            id="formControlsText"
-            type="email"
-            label="Email"
-            placeholder="Enter Email"
-            value={this.state.email}
-            onChange={this.handleEmailChange}
-          />
-          <FieldGroup
-            id="formControlsPassword"
-            label="Password"
-            type="password"
-            placeholder="Enter password"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-            required
-          />
-          <FieldGroup
-            id="formControlsPasswordConfirm"
-            label=" Confirm Password"
-            type="password"
-            placeholder="Enter password"
-            value={this.state.passwordConfirm}
-            onChange={this.handlePasswordConfirmChange}
-            required
-          />
-          <Button
-            type="submit"
-            className="btn-primary"
-            disabled={!isEnabled}>
-            Submit
-          </Button>
+      <div>
+        <NavBar />
+        <div className="container">
+          <form onSubmit={this.handleSubmit}>
+            <FieldGroup
+              id="formControlsText"
+              type="email"
+              label="Email"
+              placeholder="Enter Email"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+            />
+            <FieldGroup
+              id="formControlsPassword"
+              label="Password"
+              type="password"
+              placeholder="Enter password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+              required
+            />
+            <FieldGroup
+              id="formControlsPasswordConfirm"
+              label=" Confirm Password"
+              type="password"
+              placeholder="Enter password"
+              value={this.state.passwordConfirm}
+              onChange={this.handlePasswordConfirmChange}
+              required
+            />
+            <Button
+              type="submit"
+              className="btn-primary"
+              disabled={!isEnabled}>
+              Submit
+            </Button>
 
-        </form>
+          </form>
+        </div>
       </div>
     )
   }

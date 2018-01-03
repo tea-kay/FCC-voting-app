@@ -11,7 +11,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />

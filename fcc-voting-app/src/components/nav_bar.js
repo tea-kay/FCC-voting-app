@@ -28,14 +28,14 @@ class NavBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <Link to='/'><NavItem eventKey={1}>Home</NavItem></Link>
-          <NavItem eventKey={2} href="polls">Polls</NavItem>
+          <NavItem componentClass={Link} to='/' href='/' eventKey={1}>Home</NavItem>
+          <NavItem componentClass={Link} to='/polls' href='/polls' eventKey={2}>Polls</NavItem>
         </Nav>
         <Nav pullRight>
           {!isAuthenticated &&
             [
-              <NavItem key='login' eventKey={3} href="login">Login</NavItem>,
-              <NavItem key='signup' eventKey={4} href="signup">Sign Up</NavItem>
+              <NavItem key='login' componentClass={Link} to='/login' href='/login' eventKey={3}>Login</NavItem>,
+              <NavItem key='signup' componentClass={Link} to='/signup' href='/signup' eventKey={4}>Sign Up</NavItem>
             ]
           }
           {isAuthenticated &&
