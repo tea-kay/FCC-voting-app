@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button, Row, Col } from 'react-bootstrap';
+import NavBar from './nav_bar';
 
 import NavBar from './nav_bar';
 
@@ -7,7 +8,11 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <NavBar />
+=======
+        <NavBar history={this.props.history}/>
+>>>>>>> c9c54940680e92de55b3b908d0c68e95ba83ae0d
         <div className="container">
           <Jumbotron className="jumbotron">
             <h2>Welcome To Free-Voting-App</h2>
