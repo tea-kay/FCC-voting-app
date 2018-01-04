@@ -1,9 +1,55 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import NavBar from './nav_bar';
+import axios from 'axios';
 
 export default class PollsPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      polls: [],
+      loaded: false
+    }
+  }
+
+  componentWillMount() {
+    axios.get('http://localhost:3000/polls')
+      .then(({ data: { success, polls } }) => {
+        // check if success is true/false
+        this.setState({
+          polls,
+          loaded: true
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  renderPollItems() {
+    return this.state.polls.map(({ title, _id }) => {
+      return (
+        <ListGroupItem
+          key={_id}
+          href="#link1"
+        >
+          {title}
+        </ListGroupItem>
+      )
+    });
+  }
+
   render() {
+    if (this.state.polls.length === 0 && this.state.loaded === false) {
+      return (
+        <h1>Loading...</h1>
+      )
+    } else if (this.state.polls.length === 0 && this.state.loaded) {
+      return (
+        <h1>No polls in database.</h1>
+      )
+    }
     return(
       <div>
         <NavBar history={this.props.history}/>
@@ -12,8 +58,7 @@ export default class PollsPage extends Component {
             <h2>List of Current Polls</h2>
           </div>
           <ListGroup className="landing-content">
-            <ListGroupItem href="#link1">React V.S. Angular</ListGroupItem>
-            <ListGroupItem href="#link2">Mongo V.S. MySQL</ListGroupItem>
+            {this.renderPollItems()}
           </ListGroup>
         </div>
       </div>
