@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 
 import { actionCreators } from '../actions/authActions';
 import FieldGroup from './field_group';
-import axios from 'axios';
 
 import NavBar from './nav_bar';
 

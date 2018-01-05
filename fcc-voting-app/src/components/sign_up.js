@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import FieldGroup from './field_group';
 import axios from 'axios';
 

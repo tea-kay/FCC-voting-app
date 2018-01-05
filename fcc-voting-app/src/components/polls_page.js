@@ -17,6 +17,7 @@ export default class PollsPage extends Component {
     axios.get('http://localhost:3000/polls')
       .then(({ data: { success, polls } }) => {
         // check if success is true/false
+        console.log(polls)
         this.setState({
           polls,
           loaded: true
