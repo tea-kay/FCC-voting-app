@@ -6,7 +6,6 @@ import LandingPage from './components/landing_page';
 import PollsPage from './components/polls_page';
 import SignUp from './components/sign_up';
 import Login from './components/login';
-
 import PollView from './components/poll_view';
 
 class App extends Component {
@@ -16,7 +15,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/polls" component={PollsPage} />
+            <Route path="/polls" exact component={PollsPage} />
+            <Route path="/polls/:id" component={PollView} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route path="/demo" component={PollView} />
