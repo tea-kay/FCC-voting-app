@@ -32,7 +32,7 @@ export default class PollView extends Component {
                       <option className="menu-item">option2</option>
                       <option className="menu-item">option3</option>
                     </FormControl>
-                    <Button type="submit" className="poll-submit">Submit</Button>
+                      <Button type="submit" className="poll-submit">Submit</Button>
                   </FormGroup>
                 </Form>
               </Col>
