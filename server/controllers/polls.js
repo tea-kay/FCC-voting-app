@@ -7,3 +7,12 @@ exports.fetchAllPolls = (req, res, next) => {
     res.send({ success: true, msg: 'retrieved all polls', polls })
   });
 }
+
+exports.fetchPollById = (req, res, next) => {
+  const { id } = req.params;
+  Poll.findById(id, (err, poll) => {
+    if (err) return res.send({ success: false, msg: 'Error reading from database' });
+    if (!poll) return res.send({ success: false, msg: 'This poll ID does not exist', poll });
+    res.send({ success: true, msg: 'retrieved poll', poll });
+  });
+}

@@ -33,7 +33,9 @@ export default class PollsPage extends Component {
       return (
         <ListGroupItem
           key={_id}
-          href="#link1"
+          onClick={() => {
+            this.props.history.push(`/polls/${_id}`)
+          }}
         >
           {title}
         </ListGroupItem>
