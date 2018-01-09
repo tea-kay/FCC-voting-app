@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -34,15 +34,15 @@ class NavBar extends Component {
         <Nav pullRight>
           {!isAuthenticated &&
             [
-              <NavItem key='login' componentClass={Link} to='/login' href='/login' eventKey={3}>Login</NavItem>,
-              <NavItem key='signup' componentClass={Link} to='/signup' href='/signup' eventKey={4}>Sign Up</NavItem>
+              <NavItem key='login' componentClass={Link} to='/login' href='/login' eventKey={3}><button type="button" className="btn header-btn btn-warning">Login</button></NavItem>,
+              <NavItem key='signup' componentClass={Link} to='/signup' href='/signup' eventKey={4}><button type="button" className="btn header-btn btn-primary">Signup</button></NavItem>
             ]
           }
           {isAuthenticated &&
             [
               <NavItem key='mypolls' componentClass={Link} to='/mypolls' href='/mypolls' eventKey={3}>My Polls</NavItem>,
-              <NavItem key='newpoll' componentClass={Link} to='/newpoll' href='/newpoll' eventKey={4}>New Poll</NavItem>,
-              <NavItem eventKey={5} onClick={this.handleLogout}>Logout</NavItem>
+              <NavItem key='newpoll' componentClass={Link} to='/newpoll' href='/newpoll' eventKey={4}><button type="button" className="btn header-btn btn-primary">New Poll</button></NavItem>,
+              <NavItem eventKey={5} onClick={this.handleLogout}><button type="button" className="btn header-btn btn-warning">Logout</button></NavItem>
             ]
           }
         </Nav>

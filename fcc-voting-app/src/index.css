@@ -4,6 +4,9 @@ body {
   font-family: sans-serif;
 }
 
+.header-btn {
+  margin: -8px 0 -8px -3px;
+}
 .show-grid {
 }
 
