@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 import NavBar from './nav_bar';
 
 export default class LandingPage extends Component {
@@ -11,7 +13,7 @@ export default class LandingPage extends Component {
           <Jumbotron className="jumbotron">
             <h2>Welcome To Free-Voting-App</h2>
             <p>Create custom polls with live results</p>
-            <p><Button bsStyle="primary" href="/polls">View Polls</Button></p>
+            <Button bsStyle="primary" componentClass={Link} to='/polls' href='/polls'>View Polls</Button>
           </Jumbotron>
           <Row className="show-grid">
             <Col xs={6} md={4} className="landing-content"><span><h3>Live Vote Tracking</h3></span><p>content</p></Col>

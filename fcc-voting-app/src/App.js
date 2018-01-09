@@ -7,6 +7,7 @@ import PollsPage from './components/polls_page';
 import SignUp from './components/sign_up';
 import Login from './components/login';
 import PollView from './components/poll_view';
+import NewPoll from './components/new_poll';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
             <Route path="/polls/:id" component={PollView} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
-            <Route path="/demo" component={PollView} />
+            <Route path="/newpoll" component={NewPoll} />
           </Switch>
         </BrowserRouter>
       </div>

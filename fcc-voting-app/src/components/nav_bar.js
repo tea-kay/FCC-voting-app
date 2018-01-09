@@ -39,7 +39,11 @@ class NavBar extends Component {
             ]
           }
           {isAuthenticated &&
-            <NavItem eventKey={3} onClick={this.handleLogout}>Logout</NavItem>
+            [
+              <NavItem key='mypolls' componentClass={Link} to='/mypolls' href='/mypolls' eventKey={3}>My Polls</NavItem>,
+              <NavItem key='newpoll' componentClass={Link} to='/newpoll' href='/newpoll' eventKey={4}>New Poll</NavItem>,
+              <NavItem eventKey={5} onClick={this.handleLogout}>Logout</NavItem>
+            ]
           }
         </Nav>
       </Navbar>
