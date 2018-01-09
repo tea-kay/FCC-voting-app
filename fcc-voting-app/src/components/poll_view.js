@@ -16,7 +16,6 @@ class PollView extends Component {
       loaded: false,
       selectedOption: ""
     };
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -51,7 +50,6 @@ class PollView extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
   }
 
   buildChart() {
@@ -65,9 +63,6 @@ class PollView extends Component {
   }
 
   render () {
-    const data02 = [{name: 'Group A', value: 2400}, {name: 'Group B', value: 4567},
-                    {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
-                    {name: 'Group E', value: 3908}, {name: 'Group F', value: 4800}];
     if (this.state.loaded === false) {
       return <h1>Loading...</h1>
     } else if (this.state.loaded === true && this.state.poll === null) {

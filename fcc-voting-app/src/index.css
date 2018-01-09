@@ -30,3 +30,11 @@ select, option {
   width: 15em;
   height: 2em;
 }
+
+button.list-group-item {
+  text-align: center;
+}
+
+.poll-items {
+  margin: auto;
+}

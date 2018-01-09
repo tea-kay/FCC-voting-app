@@ -32,6 +32,7 @@ export default class PollsPage extends Component {
     return this.state.polls.map(({ title, _id }) => {
       return (
         <ListGroupItem
+          className="poll-items"
           key={_id}
           onClick={() => {
             this.props.history.push(`/polls/${_id}`)
