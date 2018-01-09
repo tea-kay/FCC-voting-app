@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Jumbotron, Row, Col, FormGroup, FormControl, ControlLabel, DropdownButton, MenuItem, Button, Form } from 'react-bootstrap';
-import { PieChart, Pie, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Tooltip } from 'recharts';
 import axios from 'axios';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 import NavBar from './nav_bar';
 
-export default class PollView extends Component {
+class PollView extends Component {
   constructor(props) {
     super(props);
 
@@ -53,6 +54,16 @@ export default class PollView extends Component {
 
   }
 
+  buildChart() {
+    return _.map(this.state.poll.options, (value, name) => {
+      return { name, value };
+    })
+  }
+
+  checkUser() {
+    return this.state.poll.votedBy.includes(this.props.auth.user._id)
+  }
+
   render () {
     const data02 = [{name: 'Group A', value: 2400}, {name: 'Group B', value: 4567},
                     {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
@@ -62,6 +73,7 @@ export default class PollView extends Component {
     } else if (this.state.loaded === true && this.state.poll === null) {
       return <h1>Invalid Poll Id</h1>
     }
+    console.log(this.state.poll.options)
     return (
       <div>
         <NavBar />
@@ -85,13 +97,20 @@ export default class PollView extends Component {
                       <option hidden value="">Choose an option:</option>
                       {this.renderOptions()}
                     </FormControl>
-                    <Button className="poll-submit">Submit</Button>
+                    <Button
+                      className="poll-submit"
+                      disabled={this.checkUser()}
+                    >Submit</Button>
                   </FormGroup>
                 </Form>
               </Col>
               <Col md={6} className="show-grid">
                 <PieChart width={510} height={400}>
-                  <Pie data={data02} innerRadius={45} outerRadius={150} fill="#82ca9d" label/>
+                  <Pie data={this.buildChart()}
+                    dataKey="value"
+                    innerRadius={45}
+                    outerRadius={150}
+                    fill="#82ca9d" label/>
                   <Tooltip/>
                 </PieChart>
               </Col>
@@ -102,3 +121,9 @@ export default class PollView extends Component {
      );
    }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(PollView);
