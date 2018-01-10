@@ -5,7 +5,7 @@ body {
 }
 
 .header-btn {
-  margin: -8px 0 -8px -3px;
+  margin: -8px -3px -8px -3px;
 }
 .show-grid {
 }
@@ -40,4 +40,8 @@ button.list-group-item {
 
 .poll-items {
   margin: auto;
+}
+
+.jumbotron {
+  text-align: left !important;
 }
