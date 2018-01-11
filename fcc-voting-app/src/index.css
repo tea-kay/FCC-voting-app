@@ -42,6 +42,13 @@ button.list-group-item {
   margin: auto;
 }
 
-.jumbotron {
+.new-poll-labels {
+  margin: 8px;
+}
+
+.create-poll {
   text-align: left !important;
+}
+.create-btn {
+  margin-top: 10px;
 }

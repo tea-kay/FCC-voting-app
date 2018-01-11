@@ -21,6 +21,7 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route path="/newpoll" component={NewPoll} />
+            <Route path="/mypolls" component={PollsPage} />
           </Switch>
         </BrowserRouter>
       </div>

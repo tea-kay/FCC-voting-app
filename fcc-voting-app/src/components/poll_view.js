@@ -75,7 +75,7 @@ class PollView extends Component {
         <div className="container">
           <Jumbotron>
             <Row>
-              <Col md={6} className="poll-info show-grid">
+              <Col md={6} className="poll-info">
                 <h3>{this.state.poll.title}</h3>
                 <p>I'd like to vote for:</p>
                 <Form onSubmit={this.handleSubmit}>

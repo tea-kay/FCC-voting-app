@@ -9,25 +9,27 @@ export default class NewPoll extends Component {
         <NavBar />
         <div className="container">
           <Row>
-          <Jumbotron className="text-left">
+          <Jumbotron className="create-poll">
             <h2>Create a new poll.</h2>
             <form>
               <FormGroup
                 controlId="formBasicText"
               >
-                <ControlLabel>Title of New Poll:</ControlLabel>
+                <ControlLabel className="new-poll-labels">Title of New Poll:</ControlLabel>
                 <FormControl
                   type="text"
                   // value={this.state.value}
-                  placeholder="Enter text"
+                  placeholder="Enter title"
                   // onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
-                <ControlLabel>Add Options Separated by Commas:</ControlLabel>
+                <ControlLabel className="new-poll-labels">Add Options Separated by Commas:</ControlLabel>
                 <FormControl
                   type="textarea"
+                  placeholder="Enter options"
+
                 />
-                <Button>Create Poll</Button>
+                <Button className="create-btn btn-primary">Create Poll</Button>
               </FormGroup>
             </form>
           </Jumbotron>
