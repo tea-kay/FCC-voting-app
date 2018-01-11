@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth
+    const { isAuthenticated } = this.props.auth;
     return (
       <div>
       <Navbar>

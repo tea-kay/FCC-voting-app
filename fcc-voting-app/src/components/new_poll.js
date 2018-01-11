@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Jumbotron, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+import { Row, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
 import NavBar from './nav_bar';
 
 export default class NewPoll extends Component {
+  handleSubmit = () => {
+    console.log("working");
+  }
+
   render() {
     return (
       <div>
@@ -10,8 +14,8 @@ export default class NewPoll extends Component {
         <div className="container">
           <Row>
           <Jumbotron className="create-poll">
-            <h2>Create a new poll.</h2>
-            <form>
+            <h2>Create A New Poll.</h2>
+            <form onSubmit={this.handleSubmit}>
               <FormGroup
                 controlId="formBasicText"
               >
@@ -23,7 +27,7 @@ export default class NewPoll extends Component {
                   // onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
-                <ControlLabel className="new-poll-labels">Add Options Separated by Commas:</ControlLabel>
+                <ControlLabel className="new-poll-labels">Add Options:</ControlLabel><HelpBlock> Separate all options by commas.</HelpBlock>
                 <FormControl
                   type="textarea"
                   placeholder="Enter options"

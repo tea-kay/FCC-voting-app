@@ -43,7 +43,7 @@ button.list-group-item {
 }
 
 .new-poll-labels {
-  margin: 8px;
+  margin: 10px 0 4px 0;
 }
 
 .create-poll {
