@@ -52,10 +52,18 @@ class PollView extends Component {
     e.preventDefault();
   }
 
+  checkPollData() {
+    return _.every(this.state.poll.options)
+  }
+
   buildChart() {
-    return _.map(this.state.poll.options, (value, name) => {
-      return { name, value };
-    })
+    if (this.checkPollData()) {
+      return _.map(this.state.poll.options, (value, name) => {
+        return { name, value };
+      })
+    } else {
+      return <h2>"Currently 0 Votes"</h2>
+    }
   }
 
   checkUser() {
