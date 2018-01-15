@@ -16,3 +16,26 @@ exports.fetchPollById = (req, res, next) => {
     res.send({ success: true, msg: 'retrieved poll', poll });
   });
 }
+
+exports.createNewPoll = (req, res, next) => {
+  const { title, ownedBy, options: optionsArray } = req.body;
+  const options = optionsArray.map(option => {
+    return { option: 0 };
+  });
+
+  const newPoll = new Poll({
+    title,
+    ownedBy,
+    options,
+    votedBy: []
+  });
+
+  newPoll.save(err => {
+    if (err) return next(err);
+    res.send({
+      success: true,
+      msg: 'Successfully saved new poll',
+      poll: newPoll
+    });
+  });
+}

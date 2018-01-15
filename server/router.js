@@ -12,4 +12,5 @@ module.exports = function(app) {
   app.post('/signup', Authentication.signup);
   app.get('/polls', Polls.fetchAllPolls);
   app.get('/polls/:id', Polls.fetchPollById);
+  app.post('/newpoll', Polls.createNewPoll);
 }
