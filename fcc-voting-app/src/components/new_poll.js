@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Row, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
 import NavBar from './nav_bar';
 import { actionCreators } from '../actions/createNewPoll';
+import { Redirect } from 'react-router'
 
 class NewPoll extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class NewPoll extends Component {
 
     this.state = {
       title: '',
-      options: ''
+      options: '',
+      fireRedirect: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +28,7 @@ class NewPoll extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({ fireRedirect: true })
     const { title, options: optionStrings } = this.state;
     const ownedBy = this.props.auth.user._id;
     const options = optionStrings.split(',').map(option => option.trim());
@@ -34,6 +37,9 @@ class NewPoll extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || '/'
+    const { fireRedirect } = this.state
+
     return (
       <div>
         <NavBar />
@@ -65,6 +71,9 @@ class NewPoll extends Component {
                 <Button type="submit" className="create-btn btn-primary">Create Poll</Button>
               </FormGroup>
             </form>
+            {fireRedirect && (
+              <Redirect to={from || '/polls'}/>
+            )}
           </Jumbotron>
         </Row>
         </div>
