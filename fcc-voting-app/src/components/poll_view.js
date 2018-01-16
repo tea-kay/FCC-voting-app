@@ -57,13 +57,9 @@ class PollView extends Component {
   }
 
   buildChart() {
-    if (this.checkPollData()) {
       return _.map(this.state.poll.options, (value, name) => {
         return { name, value };
       })
-    } else {
-      return <h2>"Currently 0 Votes"</h2>
-    }
   }
 
   checkUser() {
@@ -104,6 +100,10 @@ class PollView extends Component {
                       className="poll-submit"
                       disabled={this.checkUser()}
                     >Submit</Button>
+                    {this.props.auth.user._id === this.state.poll.ownedBy &&
+                      <Button
+                        className="btn-danger poll-submit"
+                      >Delete</Button>}
                   </FormGroup>
                 </Form>
               </Col>

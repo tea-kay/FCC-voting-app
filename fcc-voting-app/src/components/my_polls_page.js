@@ -4,7 +4,7 @@ import NavBar from './nav_bar';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-class PollsPage extends Component {
+class MyPolls extends Component {
   constructor(props) {
     super(props);
 
@@ -29,8 +29,9 @@ class PollsPage extends Component {
       });
   }
 
-  renderPollItems() {
-    return this.state.polls.map(({ title, _id}) => {
+  renderMyPolls() {
+    return this.state.polls.map(({ title, _id, ownedBy }) => {
+      if (this.props.auth.user._id === ownedBy)
       return (
         <ListGroupItem
           className="poll-items"
@@ -63,7 +64,7 @@ class PollsPage extends Component {
             <h2>List of Current Polls</h2>
           </div>
           <ListGroup className="landing-content">
-            {this.renderPollItems()}
+            {this.renderMyPolls()}
           </ListGroup>
         </div>
       </div>
@@ -74,4 +75,4 @@ const mapStateToProps = ({ auth }) => {
   return { auth }
 }
 
-export default connect(mapStateToProps)(PollsPage);
+export default connect(mapStateToProps)(MyPolls);

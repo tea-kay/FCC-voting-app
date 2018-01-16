@@ -16,6 +16,8 @@ function createNewPoll({ title, ownedBy, options }) {
   }
 }
 
+// we forgot to close the portal, muhahahahaha
+
 export const actionCreators = {
   createNewPoll
 };
