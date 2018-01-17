@@ -3,8 +3,9 @@ import { Jumbotron, Row, Col, FormGroup, FormControl, ControlLabel, Button, Form
 import { PieChart, Pie, Tooltip } from 'recharts';
 import axios from 'axios';
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { actionCreators } from '../actions/deletePoll';
 import NavBar from './nav_bar';
 
 class PollView extends Component {
@@ -17,6 +18,7 @@ class PollView extends Component {
       selectedOption: ""
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDeletePoll = this.handleDeletePoll.bind(this);
   }
 
   handleChange(e) {
@@ -66,6 +68,12 @@ class PollView extends Component {
     return this.state.poll.votedBy.includes(this.props.auth.user._id)
   }
 
+  handleDeletePoll(e) {
+    e.preventDefault();
+    const { _id } = this.state.poll;
+    this.props.actions.deletePoll({ _id });
+  }
+
   render () {
     if (this.state.loaded === false) {
       return <h1>Loading...</h1>
@@ -97,15 +105,16 @@ class PollView extends Component {
                       {this.renderOptions()}
                     </FormControl>
                     <Button
-                      className="poll-submit"
+                      className="poll-submit btn-success"
                       disabled={this.checkUser()}
                     >Submit</Button>
-                    {this.props.auth.user._id === this.state.poll.ownedBy &&
-                      <Button
-                        className="btn-danger poll-submit"
-                      >Delete</Button>}
                   </FormGroup>
                 </Form>
+                {this.props.auth.user._id === this.state.poll.ownedBy &&
+                  <Button
+                    className="btn-danger poll-submit"
+                    onClick={this.handleDeletePoll}
+                  >Delete</Button>}
               </Col>
               <Col md={6} className="show-grid">
                 <PieChart width={510} height={400}>
@@ -127,6 +136,10 @@ class PollView extends Component {
 
 const mapStateToProps = ({ auth }) => {
   return { auth }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators(actionCreators, dispatch) }
 }
 
 export default connect(mapStateToProps)(PollView);

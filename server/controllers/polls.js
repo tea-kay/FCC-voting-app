@@ -39,3 +39,7 @@ exports.createNewPoll = (req, res, next) => {
     });
   });
 }
+
+exports.deletePoll = () => {
+
+};
