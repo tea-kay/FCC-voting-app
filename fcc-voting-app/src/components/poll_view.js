@@ -68,8 +68,7 @@ class PollView extends Component {
     return this.state.poll.votedBy.includes(this.props.auth.user._id)
   }
 
-  handleDeletePoll(e) {
-    e.preventDefault();
+  handleDeletePoll() {
     const { _id } = this.state.poll;
     this.props.actions.deletePoll({ _id });
   }

@@ -43,9 +43,16 @@ exports.createNewPoll = (req, res, next) => {
 exports.deletePoll = (req, res, next) => {
   const { _id } = req.body;
 
-  Poll.findAndModify({
-    query: { _id },
-    remove: true
-  });
-  
+  Poll.findByIdAndRemove(_id, (err, poll) => {
+    if (err) return next(err);
+    if (!poll) return res.status(422).send({
+      success: false,
+      msg: "Poll ID does not exist"
+    });
+    res.send({
+      success: true,
+      msg: "Poll has been deleted"
+    });
+  })
+
 };
