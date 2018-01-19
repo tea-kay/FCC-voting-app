@@ -55,6 +55,10 @@ class MyPolls extends Component {
       return (
         <h1>No polls in database.</h1>
       )
+    } else if (this.state.polls === undefined) {
+      return (
+        <h1>Login to see your polls.</h1>
+      )
     }
     return(
       <div>

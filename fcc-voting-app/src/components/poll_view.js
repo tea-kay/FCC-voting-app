@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Col, FormGroup, FormControl, ControlLabel, Button, Form } from 'react-bootstrap';
+import { Jumbotron, Row, Col, FormGroup, FormControl, Button, Form } from 'react-bootstrap';
 import { PieChart, Pie, Tooltip } from 'recharts';
 import axios from 'axios';
 import _ from 'lodash';

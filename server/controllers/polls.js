@@ -40,6 +40,12 @@ exports.createNewPoll = (req, res, next) => {
   });
 }
 
-exports.deletePoll = () => {
+exports.deletePoll = (req, res, next) => {
+  const { _id } = req.body;
 
+  Poll.findAndModify({
+    query: { _id },
+    remove: true
+  });
+  
 };
