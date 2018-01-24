@@ -14,4 +14,5 @@ module.exports = function(app) {
   app.get('/polls/:id', Polls.fetchPollById);
   app.post('/newpoll', Polls.createNewPoll);
   app.post('/deletepoll', Polls.deletePoll);
+  app.post('/polls/:id', Polls.voteForPoll);
 }

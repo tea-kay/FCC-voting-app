@@ -72,7 +72,7 @@ class NewPoll extends Component {
               </FormGroup>
             </form>
             {fireRedirect && (
-              <Redirect to={from || '/polls'}/>
+              <Redirect to={from || '/mypolls'}/>
             )}
           </Jumbotron>
         </Row>

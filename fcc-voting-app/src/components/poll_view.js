@@ -5,7 +5,6 @@ import axios from 'axios';
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../actions/deletePoll';
 import NavBar from './nav_bar';
 
 class PollView extends Component {
@@ -70,7 +69,13 @@ class PollView extends Component {
 
   handleDeletePoll() {
     const { _id } = this.state.poll;
-    this.props.actions.deletePoll({ _id });
+    axios.post('http://localhost:3000/deletepoll', { _id })
+      .then(({ data: { success, msg } }) => {
+        this.props.history.push('/mypolls');
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render () {
@@ -135,10 +140,6 @@ class PollView extends Component {
 
 const mapStateToProps = ({ auth }) => {
   return { auth }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(actionCreators, dispatch) }
 }
 
 export default connect(mapStateToProps)(PollView);
