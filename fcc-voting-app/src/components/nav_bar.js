@@ -42,7 +42,7 @@ class NavBar extends Component {
             [
               <NavItem key='mypolls' componentClass={Link} to='/mypolls' href='/mypolls' eventKey={3}>My Polls</NavItem>,
               <NavItem key='newpoll' componentClass={Link} to='/newpoll' href='/newpoll' eventKey={4}><button type="button" className="btn header-btn btn-primary">New Poll</button></NavItem>,
-              <NavItem eventKey={5} onClick={this.handleLogout}><button type="button" className="btn header-btn btn-warning">Logout</button></NavItem>
+              <NavItem key='logout' eventKey={5} onClick={this.handleLogout}><button type="button" className="btn header-btn btn-warning">Logout</button></NavItem>
             ]
           }
         </Nav>
