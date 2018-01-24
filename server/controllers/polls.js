@@ -19,8 +19,10 @@ exports.fetchPollById = (req, res, next) => {
 
 exports.createNewPoll = (req, res, next) => {
   const { title, ownedBy, options: optionsArray } = req.body;
-  const options = optionsArray.map(option => {
-    return { [`${option}`]: 0 };
+  const options = {};
+
+  optionsArray.forEach(option => {
+    options[option] = 0;
   });
 
   const newPoll = new Poll({
@@ -60,7 +62,8 @@ exports.deletePoll = (req, res, next) => {
 exports.voteForPoll = (req, res, next) => {
   const { id } = req.params;
   const { voteOption, voter } = req.body;
-  const update = { $inc: { [`results.${voteOption}`]: 1 }, $push: { votedBy: voter } };
+  console.log('the body', { voteOption, voter })
+  const update = { $inc: { [`options.${voteOption}`]: 1 }, $push: { votedBy: voter } };
   const config = { new: true };
 
   Poll.findByIdAndUpdate(id, update, config, (err, poll) => {
