@@ -14,14 +14,15 @@ class PollView extends Component {
     this.state = {
       poll: null,
       loaded: false,
-      selectedOption: ""
+      voteOption: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDeletePoll = this.handleDeletePoll.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ selectedOption: e.target.value })
+    this.setState({ voteOption: e.target.value })
   }
 
   componentWillMount() {
@@ -51,6 +52,16 @@ class PollView extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { _id } = this.state.poll;
+    const { voteOption } = this.state;
+    const voter = this.props.auth.email;
+
+    axios.post(`http://localhost:3000/polls/${_id}`, { voteOption, voter})
+      .then(({ data: { poll } }) => {
+        this.setState({
+          poll
+        })
+      })
   }
 
   checkPollData() {
@@ -101,14 +112,15 @@ class PollView extends Component {
                         componentClass="select"
                         className="form-options"
                         placeholder="Choose an option:"
-                        name="selectedOption"
+                        name="voteOption"
                         onChange={this.handleChange}
-                        value={this.state.selectedOption}
+                        value={this.state.voteOption}
                       >
                       <option hidden value="">Choose an option:</option>
                       {this.renderOptions()}
                     </FormControl>
                     <Button
+                      type="submit"
                       className="poll-submit btn-success"
                       disabled={this.checkUser()}
                     >Submit</Button>

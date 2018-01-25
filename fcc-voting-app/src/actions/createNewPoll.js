@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CREATE_NEW_POLL } from './types';
 
-function createNewPoll({ title, ownedBy, options }) {
+function createNewPoll({ title, ownedBy, options, history }) {
   return (dispatch) => {
     axios.post('http://localhost:3000/newpoll', { title, ownedBy, options })
       .then(({ data: { success, msg, poll } }) => {
@@ -9,6 +9,7 @@ function createNewPoll({ title, ownedBy, options }) {
           type: CREATE_NEW_POLL,
           payload: poll
         });
+        history.push('/mypolls');
       })
       .catch(error => {
         console.error(error);

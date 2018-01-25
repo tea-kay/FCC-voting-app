@@ -28,12 +28,12 @@ class NewPoll extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ fireRedirect: true })
     const { title, options: optionStrings } = this.state;
     const ownedBy = this.props.auth.user._id;
     const options = optionStrings.split(',').map(option => option.trim());
-
-    this.props.actions.createNewPoll({ title, ownedBy, options });
+    const { history } = this.props;
+    
+    this.props.actions.createNewPoll({ title, ownedBy, options, history })
   }
 
   render() {
