@@ -76,3 +76,19 @@ exports.voteForPoll = (req, res, next) => {
   });
 
 }
+
+exports.addPollOption = (req, res, next) => {
+  const { id } = req.params;
+  const { newOption } = req.body;
+  const update = { $set: { [`options.${newOption}`]: 0 } };
+  const config = { new: true };
+
+  Poll.findByIdAndUpdate(id, update, config, (err, poll) => {
+    if (err) return next(err);
+    if (!poll) return res.status(404).send({ success: false, msg: 'Poll ID does not exist' });
+    res.send({
+      success: true,
+      poll
+    });
+  })
+}

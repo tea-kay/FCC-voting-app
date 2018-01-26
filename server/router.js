@@ -15,4 +15,5 @@ module.exports = function(app) {
   app.post('/newpoll', Polls.createNewPoll);
   app.post('/deletepoll', Polls.deletePoll);
   app.post('/polls/:id', Polls.voteForPoll);
+  app.post('/polls/AddOption/:id', Polls.addPollOption);
 }
