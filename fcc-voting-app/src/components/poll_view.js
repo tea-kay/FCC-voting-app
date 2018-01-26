@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Col, FormGroup, FormControl, Button, Form } from 'react-bootstrap';
+import { Jumbotron, Row, Col, FormGroup, FormControl, Button, Form, HelpBlock } from 'react-bootstrap';
 import { PieChart, Pie, Tooltip } from 'recharts';
 import axios from 'axios';
 import _ from 'lodash';
@@ -54,7 +54,7 @@ class PollView extends Component {
     e.preventDefault();
     const { _id } = this.state.poll;
     const { voteOption } = this.state;
-    const voter = this.props.auth.email;
+    const voter = this.props.auth.user.email;
 
     axios.post(`http://localhost:3000/polls/${_id}`, { voteOption, voter})
       .then(({ data: { poll } }) => {
@@ -75,7 +75,7 @@ class PollView extends Component {
   }
 
   checkUser() {
-    return this.state.poll.votedBy.includes(this.props.auth.user._id)
+    return this.state.poll.votedBy.includes(this.props.auth.user.email)
   }
 
   handleDeletePoll() {
@@ -119,11 +119,13 @@ class PollView extends Component {
                       <option hidden value="">Choose an option:</option>
                       {this.renderOptions()}
                     </FormControl>
-                    <Button
-                      type="submit"
-                      className="poll-submit btn-success"
-                      disabled={this.checkUser()}
-                    >Submit</Button>
+                      <Button
+                        type="submit"
+                        className="poll-submit btn-success"
+                        disabled={this.checkUser()}
+                      >Submit</Button>
+                      {this.checkUser() &&
+                        <HelpBlock>You have already voted on this poll.</HelpBlock>}
                   </FormGroup>
                 </Form>
                 {this.props.auth.user._id === this.state.poll.ownedBy &&
