@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Col, FormGroup, FormControl, Button, Form, HelpBlock } from 'react-bootstrap';
+import { Jumbotron, Row, Col, ControlLabel, FormGroup, FormControl, Button, Form, HelpBlock } from 'react-bootstrap';
 import { PieChart, Pie, Tooltip } from 'recharts';
 import axios from 'axios';
 import _ from 'lodash';
@@ -14,11 +14,14 @@ class PollView extends Component {
     this.state = {
       poll: null,
       loaded: false,
-      voteOption: ""
+      voteOption: "",
+      newOption: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDeletePoll = this.handleDeletePoll.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleAddOptionSubmit = this.handleAddOptionSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -64,6 +67,26 @@ class PollView extends Component {
       })
   }
 
+  handleAddOption(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  handleAddOptionSubmit(e) {
+    e.preventDefault();
+    const { _id } = this.state.poll;
+    const { newOption } = this.state;
+    const config = { headers: { 'authorization': this.props.auth.token } };
+    axios.post(`http://localhost:3000/polls/AddOption/${_id}`, { newOption }, config)
+      .then(({ data: { poll } }) => {
+        this.setState({
+          poll,
+          newOption: ""
+        })
+      });
+  }
+
   checkPollData() {
     return _.every(this.state.poll.options)
   }
@@ -75,6 +98,10 @@ class PollView extends Component {
   }
 
   checkUser() {
+    if (this.props.auth.user === null) {
+      // TODO: if logged out, check if IP address is in votedBy array
+      return false;
+    }
     return this.state.poll.votedBy.includes(this.props.auth.user.email)
   }
 
@@ -128,7 +155,20 @@ class PollView extends Component {
                         <HelpBlock>You have already voted on this poll.</HelpBlock>}
                   </FormGroup>
                 </Form>
-                {this.props.auth.user._id === this.state.poll.ownedBy &&
+                <Form
+                  onSubmit={this.handleAddOptionSubmit}
+                >
+                  <FormGroup>
+                    <ControlLabel>New Option</ControlLabel>
+                    <FormControl
+                      onChange={this.handleAddOption}
+                      name="newOption"
+                      value={this.state.newOption}
+                    />
+                    {/* TODO: Add validation for adding repeat option before axios.post */}
+                  </FormGroup>
+                </Form>
+                {this.props.auth.user && this.props.auth.user._id === this.state.poll.ownedBy &&
                   <Button
                     className="btn-danger poll-submit"
                     onClick={this.handleDeletePoll}
