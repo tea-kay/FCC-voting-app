@@ -34,6 +34,12 @@ select, option {
   height: 2em;
 }
 
+.option-submit {
+  width: 17em;
+  margin: 0px auto;
+
+}
+
 button.list-group-item {
   text-align: center;
 }

@@ -105,6 +105,14 @@ class PollView extends Component {
     return this.state.poll.votedBy.includes(this.props.auth.user.email)
   }
 
+  checkIfLoggedIn() {
+    if (this.props.auth.isAuthenticated === false) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   handleDeletePoll() {
     const { _id } = this.state.poll;
     axios.post('http://localhost:3000/deletepoll', { _id })
@@ -122,7 +130,6 @@ class PollView extends Component {
     } else if (this.state.loaded === true && this.state.poll === null) {
       return <h1>Invalid Poll Id</h1>
     }
-    console.log(this.state.poll.options)
     return (
       <div>
         <NavBar />
@@ -161,10 +168,14 @@ class PollView extends Component {
                   <FormGroup>
                     <ControlLabel>New Option</ControlLabel>
                     <FormControl
+                      className="option-submit"
                       onChange={this.handleAddOption}
                       name="newOption"
                       value={this.state.newOption}
+                      disabled={this.checkIfLoggedIn()}
                     />
+                    {this.checkIfLoggedIn() &&
+                    <HelpBlock>You must log in to add options.</HelpBlock>}
                     {/* TODO: Add validation for adding repeat option before axios.post */}
                   </FormGroup>
                 </Form>
