@@ -7,6 +7,7 @@ import { actionCreators } from '../actions/authActions';
 import FieldGroup from './field_group';
 
 import NavBar from './nav_bar';
+import Footer from './footer';
 
 class Login extends Component {
   constructor() {
@@ -63,6 +64,7 @@ class Login extends Component {
 
           </form>
         </div>
+        <Footer />
       </div>
     )
   }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import NavBar from './nav_bar';
 import axios from 'axios';
 import { connect } from 'react-redux';
+
+import NavBar from './nav_bar';
+import Footer from './footer';
 
 class PollsPage extends Component {
   constructor(props) {
@@ -66,6 +68,7 @@ class PollsPage extends Component {
             {this.renderPollItems()}
           </ListGroup>
         </div>
+        <Footer />
       </div>
     )
   }

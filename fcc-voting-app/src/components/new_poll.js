@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Jumbotron, FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
-import NavBar from './nav_bar';
 import { actionCreators } from '../actions/createNewPoll';
 import { Redirect } from 'react-router'
+
+import NavBar from './nav_bar';
+import Footer from './footer';
+
 
 class NewPoll extends Component {
   constructor(props) {
@@ -32,7 +35,7 @@ class NewPoll extends Component {
     const ownedBy = this.props.auth.user._id;
     const options = optionStrings.split(',').map(option => option.trim());
     const { history } = this.props;
-    
+
     this.props.actions.createNewPoll({ title, ownedBy, options, history })
   }
 

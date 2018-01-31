@@ -19,7 +19,7 @@ export default class LandingPage extends Component {
           <Row className="show-grid">
             <Col xs={6} md={4} className="landing-content">
               <span><h3>Live Vote Tracking</h3>
-            </span><p>Every vote is updated live and then immediately applied.</p>
+            </span><p>Every vote is updated live and then immediately applied to the graph.</p>
             </Col>
             <Col xs={6} md={4} className="landing-content">
               <span><h3>Works Anywhere</h3>

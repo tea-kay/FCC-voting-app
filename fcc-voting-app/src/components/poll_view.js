@@ -5,7 +5,9 @@ import axios from 'axios';
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import NavBar from './nav_bar';
+import Footer from './footer';
 
 class PollView extends Component {
   constructor(props) {
@@ -206,6 +208,8 @@ class PollView extends Component {
            </Row>
          </Jumbotron>
        </div>
+       <Footer />
+
      </div>
      );
    }

@@ -4,6 +4,7 @@ import FieldGroup from './field_group';
 import axios from 'axios';
 
 import NavBar from './nav_bar';
+import Footer from './footer';
 
 export default class SignUp extends Component {
   constructor() {
@@ -79,6 +80,7 @@ export default class SignUp extends Component {
 
           </form>
         </div>
+        <Footer />
       </div>
     )
   }
