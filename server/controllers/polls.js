@@ -61,8 +61,9 @@ exports.deletePoll = (req, res, next) => {
 
 exports.voteForPoll = (req, res, next) => {
   const { id } = req.params;
-  const { voteOption, voter } = req.body;
-  console.log('the body', { voteOption, voter })
+  const { voteOption } = req.body;
+  const { voter } = req.body;
+
   const update = { $inc: { [`options.${voteOption}`]: 1 }, $push: { votedBy: voter } };
   const config = { new: true };
 

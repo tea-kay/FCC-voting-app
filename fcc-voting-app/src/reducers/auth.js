@@ -1,5 +1,4 @@
-import { SET_CURRENT_USER } from '../actions/types';
-
+import { SET_CURRENT_USER, UN_AUTH_USER } from '../actions/types';
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
@@ -17,6 +16,12 @@ export default (state = DEFAULT_STATE, action) => {
         msg: action.msg,
         token: action.token
       };
+    case UN_AUTH_USER:
+      return {
+        ...state,
+        user: action.user,
+        msg: action.msg
+      }
     default:
       return state;
   }

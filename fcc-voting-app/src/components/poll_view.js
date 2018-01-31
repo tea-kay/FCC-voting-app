@@ -57,8 +57,12 @@ class PollView extends Component {
     e.preventDefault();
     const { _id } = this.state.poll;
     const { voteOption } = this.state;
-    const voter = this.props.auth.user.email;
-
+    let voter = null;
+    if (this.props.auth.isAuthenticated === false) {
+      voter = this.props.auth.user;
+    } else {
+      voter = this.props.auth.user.email;
+    }
     axios.post(`http://localhost:3000/polls/${_id}`, { voteOption, voter})
       .then(({ data: { poll } }) => {
         this.setState({
@@ -77,6 +81,10 @@ class PollView extends Component {
     e.preventDefault();
     const { _id } = this.state.poll;
     const { newOption } = this.state;
+    if (_.includes(this.state.poll.options, newOption)) {
+      return
+      //TODO: Add an alert
+    }
     const config = { headers: { 'authorization': this.props.auth.token } };
     axios.post(`http://localhost:3000/polls/AddOption/${_id}`, { newOption }, config)
       .then(({ data: { poll } }) => {
@@ -98,9 +106,9 @@ class PollView extends Component {
   }
 
   checkUser() {
-    if (this.props.auth.user === null) {
+    if (this.props.auth.isAuthenticated === false) {
       // TODO: if logged out, check if IP address is in votedBy array
-      return false;
+      return this.state.poll.votedBy.includes(this.props.auth.user);
     }
     return this.state.poll.votedBy.includes(this.props.auth.user.email)
   }

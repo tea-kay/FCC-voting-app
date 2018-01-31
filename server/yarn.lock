@@ -251,6 +251,10 @@ cli-boxes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
 
+client-ip@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/client-ip/-/client-ip-1.0.0.tgz#15ba8f5209823f0367a6d60bc41b8abf4167fe15"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
