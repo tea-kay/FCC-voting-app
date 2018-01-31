@@ -24,7 +24,7 @@ class NavBar extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="">FCC Voting App</a>
+            <a componentClass={Link} to='/' href="/">FCC Voting App</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
