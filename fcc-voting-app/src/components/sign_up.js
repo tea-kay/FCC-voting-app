@@ -33,6 +33,7 @@ export default class SignUp extends Component {
       .then(response => {
         console.log(response);
         this.setState({ fireRedirect: true });
+        alert("Sign up successful. Please Login.");
       })
       .catch(error => {
         console.error(error);
