@@ -83,7 +83,7 @@ export default class SignUp extends Component {
 
           </form>
           {fireRedirect && (
-            <Redirect to={ '/mypolls' }/>
+            <Redirect to={ '/login' }/>
           )}
         </div>
         <Footer />
