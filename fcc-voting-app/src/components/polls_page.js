@@ -54,7 +54,13 @@ class PollsPage extends Component {
       )
     } else if (this.state.polls.length === 0 && this.state.loaded) {
       return (
-        <h1>No polls in database.</h1>
+        <div>
+          <NavBar />
+          <div className="container">
+            <h1>No polls in database.</h1>
+          </div>
+          <Footer />
+        </div>
       )
     }
     return(

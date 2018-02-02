@@ -31,7 +31,7 @@ export default class SignUp extends Component {
     const { email, password } = this.state;
     axios.post('http://localhost:3000/signup', { email, password })
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({ fireRedirect: true });
         alert("Sign up successful. Please Login.");
       })

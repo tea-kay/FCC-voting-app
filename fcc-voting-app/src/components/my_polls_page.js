@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import NavBar from './nav_bar';
 import axios from 'axios';
 import { connect } from 'react-redux';
+
+import NavBar from './nav_bar';
+import Footer from './footer'
 
 class MyPolls extends Component {
   constructor(props) {
@@ -53,7 +55,13 @@ class MyPolls extends Component {
       )
     } else if (this.state.polls.length === 0 && this.state.loaded) {
       return (
-        <h1>No polls in database.</h1>
+        <div>
+          <NavBar />
+          <div className="container">
+            <h1>Currently there are no polls in the database. Create a new poll now.</h1>
+          </div>
+          <Footer />
+        </div>
       )
     } else if (this.state.polls === undefined) {
       return (
@@ -71,6 +79,7 @@ class MyPolls extends Component {
             {this.renderMyPolls()}
           </ListGroup>
         </div>
+        <Footer />
       </div>
     )
   }
