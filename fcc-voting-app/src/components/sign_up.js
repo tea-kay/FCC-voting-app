@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import FieldGroup from './field_group';
 import axios from 'axios';
+import { Redirect } from 'react-router'
 
 import NavBar from './nav_bar';
 import Footer from './footer';
@@ -12,6 +13,7 @@ export default class SignUp extends Component {
   this.state = {
     email: '',
     password: '',
+    fireRedirect: false
   };
   }
   handleEmailChange = (evt) => {
@@ -30,7 +32,7 @@ export default class SignUp extends Component {
     axios.post('http://localhost:3000/signup', { email, password })
       .then(response => {
         console.log(response);
-        // window.location = "http://localhost:3001/polls"
+        this.setState({ fireRedirect: true });
       })
       .catch(error => {
         console.error(error);
@@ -39,6 +41,7 @@ export default class SignUp extends Component {
 
   render() {
     const { email, password, passwordConfirm } = this.state;
+    const { fireRedirect } = this.state
     const isEnabled = (email.length > 0 && password.length > 0) && (password === passwordConfirm);
     return (
       <div>
@@ -79,6 +82,9 @@ export default class SignUp extends Component {
             </Button>
 
           </form>
+          {fireRedirect && (
+            <Redirect to={ '/mypolls' }/>
+          )}
         </div>
         <Footer />
       </div>
